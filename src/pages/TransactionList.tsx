@@ -92,9 +92,9 @@ export const TransactionList: React.FC = () => {
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Header & Quick Action */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-1">
         <div>
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
             {t('navEntries')}
           </h2>
           <p className="text-xs text-slate-500 font-medium">
@@ -104,22 +104,22 @@ export const TransactionList: React.FC = () => {
 
         <Link
           to="/add"
-          className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 flex items-center space-x-1.5 transition-all"
+          className="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 flex items-center space-x-1.5 transition-all btn-tap"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 stroke-[3]" />
           <span>{t('addEntryTitle')}</span>
         </Link>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+      <div className="bg-white rounded-3xl p-3.5 sm:p-4 border border-slate-200/90 shadow-xs space-y-3">
         {/* Type Toggle Pills */}
-        <div className="flex bg-slate-100 p-1 rounded-xl">
+        <div className="flex bg-slate-100 p-1 rounded-2xl gap-1">
           <button
             onClick={() => setFilterType('all')}
-            className={`flex-1 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all btn-tap ${
               filterType === 'all'
-                ? 'bg-white text-slate-900 shadow-sm'
+                ? 'bg-white text-slate-900 shadow-xs font-black'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -127,9 +127,9 @@ export const TransactionList: React.FC = () => {
           </button>
           <button
             onClick={() => setFilterType('income')}
-            className={`flex-1 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all btn-tap ${
               filterType === 'income'
-                ? 'bg-emerald-600 text-white shadow-sm'
+                ? 'bg-emerald-600 text-white shadow-xs font-black'
                 : 'text-emerald-700 hover:text-emerald-900'
             }`}
           >
@@ -137,9 +137,9 @@ export const TransactionList: React.FC = () => {
           </button>
           <button
             onClick={() => setFilterType('expense')}
-            className={`flex-1 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all btn-tap ${
               filterType === 'expense'
-                ? 'bg-red-600 text-white shadow-sm'
+                ? 'bg-red-600 text-white shadow-xs font-black'
                 : 'text-red-700 hover:text-red-900'
             }`}
           >
@@ -155,12 +155,12 @@ export const TransactionList: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-10 py-3 bg-slate-50/70 border border-slate-200 rounded-2xl text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
           />
           {searchTerm && (
             <button
               onClick={() => setSearchTerm('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 rounded-lg"
             >
               <X className="w-4 h-4" />
             </button>
@@ -168,11 +168,11 @@ export const TransactionList: React.FC = () => {
         </div>
 
         {/* Advanced Filters (Category & Dates) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-0.5 text-xs">
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl font-semibold text-slate-700 focus:outline-none focus:border-emerald-500"
           >
             <option value="">{t('allCategories')}</option>
             {allCategoryOptions.map((c, i) => (
@@ -186,7 +186,7 @@ export const TransactionList: React.FC = () => {
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl font-semibold text-slate-700 focus:outline-none focus:border-emerald-500"
             placeholder={t('fromDate')}
           />
 
@@ -194,7 +194,7 @@ export const TransactionList: React.FC = () => {
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl font-semibold text-slate-700 focus:outline-none focus:border-emerald-500"
             placeholder={t('toDate')}
           />
         </div>
@@ -217,36 +217,34 @@ export const TransactionList: React.FC = () => {
             return (
               <div
                 key={item._id}
-                className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:border-slate-300 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+                className="bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
               >
                 <div className="flex items-start space-x-3">
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-black text-base shadow-sm ${
+                    className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 font-black text-base shadow-2xs ${
                       isIncome
-                        ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-                        : 'bg-red-100 text-red-700 border border-red-200'
+                        ? 'bg-emerald-100 text-emerald-700 border border-emerald-200/80'
+                        : 'bg-red-100 text-red-700 border border-red-200/80'
                     }`}
                   >
                     {isIncome ? '+' : '-'}
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <span className="font-bold text-slate-900 text-base">
-                        {item.name}
-                      </span>
+                    <div className="font-bold text-slate-900 text-base leading-snug">
+                      {item.name}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-medium">
-                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold">
+                    <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-[11px]">
                         {getCategoryLabel(item.category, language)}
                       </span>
-                      <span className="flex items-center space-x-1 text-slate-400">
+                      <span className="flex items-center space-x-1 text-slate-400 text-[11px]">
                         <Calendar className="w-3 h-3" />
                         <span>{formatDateDisplay(item.date)}</span>
                       </span>
                       {item.note && (
-                        <span className="text-slate-500 italic bg-amber-50 px-2 py-0.5 rounded border border-amber-200/50">
+                        <span className="text-slate-600 italic bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/50 text-[11px]">
                           {item.note}
                         </span>
                       )}
@@ -254,7 +252,7 @@ export const TransactionList: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between sm:justify-end space-x-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+                <div className="flex items-center justify-between sm:justify-end space-x-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
                   <div
                     className={`font-black text-lg sm:text-xl ${
                       isIncome ? 'text-emerald-600' : 'text-red-600'
@@ -266,14 +264,14 @@ export const TransactionList: React.FC = () => {
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={() => setEditingItem(item)}
-                      className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors"
+                      className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 transition-colors btn-tap"
                       title={t('edit')}
                     >
                       <Edit2 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setDeletingId(item._id)}
-                      className="p-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 transition-colors"
+                      className="p-2.5 rounded-xl bg-red-50 hover:bg-red-100 active:bg-red-200 text-red-600 transition-colors btn-tap"
                       title={t('delete')}
                     >
                       <Trash2 className="w-4 h-4" />
@@ -296,15 +294,18 @@ export const TransactionList: React.FC = () => {
         isLoading={deleteMutation.isPending}
       />
 
-      {/* Edit Entry Modal */}
+      {/* Mobile-Friendly Edit Entry Bottom Sheet Modal */}
       {editingItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-fade-in no-print">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in no-print">
+          <div className="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 pb-8 sm:pb-6 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom-4 duration-200">
+            {/* Mobile Drag Indicator */}
+            <div className="w-10 h-1.5 bg-slate-300 rounded-full mx-auto sm:hidden -mt-1 mb-2"></div>
+
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-lg font-bold text-slate-900">{t('editEntryTitle')}</h3>
+              <h3 className="text-base sm:text-lg font-black text-slate-900">{t('editEntryTitle')}</h3>
               <button
                 onClick={() => setEditingItem(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-600"
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 btn-tap"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -320,7 +321,7 @@ export const TransactionList: React.FC = () => {
                   name="name"
                   defaultValue={editingItem.name}
                   required
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-4 py-3 rounded-2xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 bg-slate-50/50 focus:bg-white"
                 />
               </div>
 
@@ -331,11 +332,13 @@ export const TransactionList: React.FC = () => {
                   </label>
                   <input
                     type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     step="any"
                     name="amount"
                     defaultValue={editingItem.amount}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-300 font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-300 font-black text-slate-900 focus:outline-none focus:border-emerald-500 bg-slate-50/50 focus:bg-white"
                   />
                 </div>
 
@@ -346,7 +349,7 @@ export const TransactionList: React.FC = () => {
                   <select
                     name="type"
                     defaultValue={editingItem.type}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 bg-white"
+                    className="w-full px-3 py-3 rounded-2xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 bg-white"
                   >
                     <option value="income">🟢 {t('varavu')}</option>
                     <option value="expense">🔴 {t('selavu')}</option>
@@ -364,7 +367,7 @@ export const TransactionList: React.FC = () => {
                     name="category"
                     defaultValue={editingItem.category}
                     required
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500"
+                    className="w-full px-3 py-3 rounded-2xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 bg-slate-50/50 focus:bg-white"
                   />
                 </div>
 
@@ -377,7 +380,7 @@ export const TransactionList: React.FC = () => {
                     name="date"
                     defaultValue={editingItem.date}
                     required
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500"
+                    className="w-full px-3 py-3 rounded-2xl border border-slate-300 font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 bg-white"
                   />
                 </div>
               </div>
@@ -390,7 +393,7 @@ export const TransactionList: React.FC = () => {
                   type="text"
                   name="note"
                   defaultValue={editingItem.note || ''}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-900 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 bg-slate-50/50 focus:bg-white"
                 />
               </div>
 
@@ -398,14 +401,14 @@ export const TransactionList: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setEditingItem(null)}
-                  className="px-4 py-2.5 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl"
+                  className="flex-1 sm:flex-initial px-4 py-3 sm:py-2.5 text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 rounded-xl btn-tap"
                 >
                   {t('cancel')}
                 </button>
                 <button
                   type="submit"
                   disabled={updateMutation.isPending}
-                  className="px-5 py-2.5 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md shadow-emerald-600/20 disabled:opacity-50"
+                  className="flex-1 sm:flex-initial px-5 py-3 sm:py-2.5 text-sm font-black text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 rounded-xl shadow-md shadow-emerald-600/20 disabled:opacity-50 btn-tap"
                 >
                   {updateMutation.isPending ? t('saving') : t('update')}
                 </button>

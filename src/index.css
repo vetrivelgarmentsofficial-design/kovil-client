@@ -3,10 +3,68 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: 'Mukta Malar', 'Noto Sans Tamil', 'Inter', sans-serif;
-    -webkit-tap-highlight-color: transparent;
+  :root {
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
   }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+
+  body {
+    font-family: 'Mukta Malar', 'Noto Sans Tamil', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  input, textarea, select {
+    user-select: text;
+    -webkit-user-select: text;
+    font-size: 16px !important; /* Prevents auto-zoom on iOS safari input focus */
+  }
+}
+
+/* Native Mobile Safe Area Helpers */
+.pb-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Native Tap Feedback */
+.btn-tap {
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s ease;
+}
+
+.btn-tap:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 
 /* Print Specific Styles for A4 Paper */
@@ -20,6 +78,7 @@
     background-color: white !important;
     color: black !important;
     font-size: 11pt;
+    user-select: text;
   }
 
   .no-print {
